@@ -6,10 +6,15 @@ metadata:
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
+  labels:
+    run: proxy
   name: proxy
   namespace: proxy
 spec:
   template:
+    metadata:
+      labels:
+        run: proxy
     spec:
       containers:
       - image: {{ .Values.ds.image }}
