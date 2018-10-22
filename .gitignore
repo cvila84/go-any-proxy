@@ -10,3 +10,5 @@
 !builds/
 !debian/
 !flogger/
+!Dockerfile
+!run.sh
