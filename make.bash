@@ -28,7 +28,7 @@ function pull_deps()
 function build ()
 {
     make_version
-    go build any_proxy.go sni.go stats.go version.go
+    GOOS=linux go build any_proxy.go sni.go stats.go version.go
     return $?
 }
 
@@ -57,6 +57,11 @@ function reindex_debian_packages ()
 {
     echo "Rebuilding debian package repos"
     (cd debian/apt && ./reindex_stable.sh)
+}
+
+function build_docker ()
+{
+    docker build -t any-proxy:1.0 .
 }
 
 export BUILD_DIR=$2
@@ -94,9 +99,11 @@ case $1 in
         fi
     fi
     ;;
+  "docker")
+    build_docker
+    ;;
   *)
     pull_deps
     build
     ;;
 esac
-
