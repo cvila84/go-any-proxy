@@ -61,7 +61,7 @@ function reindex_debian_packages ()
 
 function build_docker ()
 {
-    docker build -t any-proxy:1.0 .
+    docker build -t any-proxy:1.0.1 .
 }
 
 export BUILD_DIR=$2
