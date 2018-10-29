@@ -130,7 +130,6 @@ done
 
 echo "Waiting for HTTP transparent proxy to listen..."
 while ! $(HTTPProxyPortsListening); do
-    ss -lnt
     sleep 1
 done
 
