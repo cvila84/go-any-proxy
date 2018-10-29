@@ -118,7 +118,7 @@ HTTPS_PROXY_PID=0
 HTTPS_TAIL_PID=0
 
 echo "Starting any_proxy as HTTP transparent proxy (parent proxy: ${HTTP_PROXY_ADDR})..."
-/tmp/any_proxy -l :3128 -p "${HTTP_PROXY_ADDR}" -f "${HTTP_PROXY_LOG}" &
+/tmp/any_proxy -l :3128 -p "${HTTP_PROXY_ADDR}" -f "${HTTP_PROXY_LOG}" -s=1 &
 HTTP_PROXY_PID="$!"
 while [ "${HTTP_TAIL_PID}" -eq 0 ]; do
     if [ -f "${HTTP_PROXY_LOG}" ]; then
@@ -134,7 +134,7 @@ while ! $(HTTPProxyPortsListening); do
 done
 
 echo "Starting any_proxy as HTTPS transparent proxy (parent proxy: ${HTTPS_PROXY_ADDR})..."
-/tmp/any_proxy -l :3129 -p "${HTTPS_PROXY_ADDR}" -f "${HTTPS_PROXY_LOG}" &
+/tmp/any_proxy -l :3129 -p "${HTTPS_PROXY_ADDR}" -f "${HTTPS_PROXY_LOG}" -s=1 &
 HTTPS_PROXY_PID="$!"
 while [ "${HTTPS_TAIL_PID}" -eq 0 ]; do
     if [ -f "${HTTPS_PROXY_LOG}" ]; then
